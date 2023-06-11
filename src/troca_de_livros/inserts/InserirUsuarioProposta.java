@@ -1,40 +1,39 @@
-package parte1;
+package troca_de_livros.inserts;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class InserirAluno {
+public class InserirUsuarioProposta {
     public static void main(String[] args) throws SQLException {
         //1. Criar a conexão
         String url = "jdbc:sqlite:banco.sqlite";
         Connection connection = DriverManager.getConnection(url);
 
-        String nome = "João da Silva";
-        String prontuario = "SP010101";
-        String email = "joao@email.com";
-        Boolean ativo = true;
+        int id_proposta = 4;
+        int id_usuario = 4;
 
 
         //2. Executa a consulta e usa os resultados
         String sql = """
-            INSERT INTO alunos (nome, prontuario, email, ativo)
-            VALUES (?, ?, ?, ?);
+            INSERT INTO usuario_proposta (id_usuario,
+            id_proposta)
+            VALUES (?, ?);
         """;
 
         PreparedStatement statement = connection.prepareStatement(sql);
-        statement.setString(1, nome);
-        statement.setString(2, prontuario);
-        statement.setString(3, email);
-        statement.setBoolean(4, ativo);
+        statement.setInt(1, id_usuario);
+        statement.setInt(2, id_proposta);
+    
+        
         
         int linhasAfetadas = statement.executeUpdate();
 
         if (linhasAfetadas > 0) {
-            System.out.println("Aluno inserido com sucesso");
+            System.out.println("Relação Proposta-Usuário inserida com sucesso");
         } else {
-            System.out.println("Falha ao inserir o aluno");
+            System.out.println("Falha ao inserir a Relação Proposta-Usuário");
         }
 
         //3. Fecha a conexão

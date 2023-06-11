@@ -1,20 +1,20 @@
-package parte2;
+package troca_de_livros.deletes;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class DeletarAluno {
+public class DeletarProposta {
     public static void main(String[] args) throws SQLException {
         //1. Criar a conexão
         String url = "jdbc:sqlite:banco.sqlite";
         Connection connection = DriverManager.getConnection(url);
 
-        Integer id = 1;
+        Integer id = 2;
 
         //2. Executa a consulta e usa os resultados
-        String sql = "DELETE FROM alunos WHERE id = ?;";
+        String sql = "DELETE FROM proposta WHERE id_proposta = ?;";
 
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setInt(1, id);
@@ -22,9 +22,9 @@ public class DeletarAluno {
         int linhasAfetadas = statement.executeUpdate();
 
         if (linhasAfetadas > 0) {
-            System.out.println("Aluno removido com sucesso");
+            System.out.println("Proposta removida com sucesso");
         } else {
-            System.out.println("Falha ao remover o aluno");
+            System.out.println("Falha ao remover a proposta");
         }
 
         //3. Fecha a conexão

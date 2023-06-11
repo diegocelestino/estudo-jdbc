@@ -1,4 +1,4 @@
-package parte1;
+package troca_de_livros.queries;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
